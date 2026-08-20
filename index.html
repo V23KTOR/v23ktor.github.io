@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Steam Engine · resume card</title>
+  <title>Steam Engine · notes</title>
   <style>
-    /* reset & base — clean, white, paper‑like */
+    /* reset & base — clean, paper‑like */
     * {
       margin: 0;
       padding: 0;
@@ -13,24 +13,23 @@
     }
 
     body {
-      background: #d9dee6;
       background: #eef1f5;
-      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
       font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
       padding: 1.2rem;
       margin: 0;
     }
 
-    /* compact card — like a resume / scientific abstract */
+    /* main card — like a notecard / offprint */
     .card {
-      max-width: 640px;
+      max-width: 680px;
       width: 100%;
       background: #ffffff;
       border-radius: 20px;
-      padding: 2rem 2.4rem 2.2rem;
+      padding: 2.2rem 2.4rem 2.4rem;
       box-shadow: 
         0 2px 4px rgba(0,0,0,0.02),
         0 12px 28px rgba(0,0,0,0.06),
@@ -38,47 +37,44 @@
       transition: 0.15s;
     }
 
-    /* header — like a paper title + byline */
+    /* header: title + subtitle */
     .title-block {
       border-bottom: 1.5px solid #eaeef2;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.6rem;
       margin-bottom: 1.2rem;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       flex-wrap: wrap;
-      gap: 0.3rem 0.6rem;
+      gap: 0.2rem 0.6rem;
     }
 
     .title-block h1 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 600;
-      letter-spacing: -0.015em;
+      letter-spacing: -0.02em;
       color: #1a2630;
       line-height: 1.2;
     }
 
-    .title-block .badge {
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      background: #eef2f6;
-      color: #2e3b47;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      border: 1px solid #d6dee6;
+    .title-block .sub {
+      font-size: 0.75rem;
+      font-weight: 450;
+      color: #5f7385;
       background: #f2f5f9;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #dce3eb;
     }
 
-    /* main content — tight, clean, no scroll */
+    /* content layout — tight, no scroll */
     .content {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.9rem;
     }
 
-    /* two‑column layout for compactness */
+    /* two‑column for compact facts */
     .row {
       display: flex;
       gap: 1.8rem;
@@ -87,27 +83,25 @@
 
     .col {
       flex: 1 1 0;
-      min-width: 160px;
+      min-width: 140px;
     }
 
-    /* section titles — like resume headings */
     .section-title {
       font-size: 0.7rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       color: #6d7e8e;
       border-bottom: 1px solid #eef2f6;
       padding-bottom: 0.2rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.45rem;
     }
 
-    /* list / items */
     .item {
       font-size: 0.82rem;
       line-height: 1.5;
       color: #1b2a36;
-      padding: 0.15rem 0;
+      padding: 0.1rem 0;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -120,7 +114,7 @@
 
     .item .label {
       color: #3e5262;
-      font-weight: 450;
+      font-weight: 400;
     }
 
     .item .value {
@@ -137,8 +131,8 @@
       border-radius: 30px;
     }
 
-    /* description — like abstract */
-    .abstract {
+    /* abstract / personal note — like the article's voice */
+    .note {
       background: #f7f9fc;
       padding: 0.7rem 1rem;
       border-radius: 12px;
@@ -146,16 +140,23 @@
       font-size: 0.82rem;
       line-height: 1.5;
       color: #1c2a36;
-      margin: 0.2rem 0 0.2rem;
+      margin: 0.1rem 0 0.1rem;
     }
 
-    .abstract strong {
+    .note strong {
       font-weight: 600;
       color: #0b1a26;
     }
 
-    /* tiny meta line — like DOI or reference */
-    .meta-footer {
+    .note .highlight {
+      background: #ecf0f5;
+      padding: 0.05rem 0.3rem;
+      border-radius: 8px;
+      font-weight: 450;
+    }
+
+    /* footer — like a reference / postscript */
+    .footer {
       margin-top: 1rem;
       padding-top: 0.6rem;
       border-top: 1px solid #eef2f6;
@@ -166,9 +167,10 @@
       color: #7a8b9a;
       letter-spacing: 0.02em;
       flex-wrap: wrap;
+      gap: 0.3rem;
     }
 
-    .meta-footer .tag {
+    .footer .tag {
       background: #eef2f6;
       padding: 0.1rem 0.8rem;
       border-radius: 40px;
@@ -176,63 +178,65 @@
       font-weight: 450;
     }
 
-    /* ultra‑compact: no scroll */
+    /* responsive */
     @media (max-width: 500px) {
       .card { padding: 1.4rem 1.2rem; }
       .title-block h1 { font-size: 1.3rem; }
       .row { gap: 0.8rem; }
-      .col { min-width: 120px; }
+      .col { min-width: 110px; }
       .item { font-size: 0.75rem; flex-wrap: wrap; }
-      .abstract { font-size: 0.75rem; padding: 0.5rem 0.7rem; }
+      .note { font-size: 0.75rem; padding: 0.5rem 0.7rem; }
     }
   </style>
 </head>
 <body>
   <div class="card">
 
-    <!-- header: like a paper title -->
+    <!-- header: title + subtitle -->
     <div class="title-block">
-      <h1>♢ Steam Engine</h1>
-      <span class="badge">· 1769 – present ·</span>
+      <h1>◈ Steam Engine</h1>
+      <span class="sub">· a brief note ·</span>
     </div>
 
-    <!-- main content – compact, resume‑like -->
+    <!-- main content -->
     <div class="content">
 
-      <!-- row: key facts + timeline -->
+      <!-- row: facts + timeline -->
       <div class="row">
-        <!-- left column: specs -->
         <div class="col">
           <div class="section-title">⏤ specification</div>
           <div class="item"><span class="label">type</span><span class="value">external combustion</span></div>
           <div class="item"><span class="label">fuel</span><span class="value">coal · wood · oil</span></div>
           <div class="item"><span class="label">efficiency</span><span class="value">~6–12%</span></div>
-          <div class="item"><span class="label">inventor</span><span class="value">T. Newcomen · J. Watt</span></div>
+          <div class="item"><span class="label">inventors</span><span class="value">Newcomen · Watt</span></div>
         </div>
 
-        <!-- right column: timeline -->
         <div class="col">
           <div class="section-title">⏤ milestones</div>
           <div class="item"><span class="label">atmospheric engine</span><span class="year">1712</span></div>
-          <div class="item"><span class="label">Watt's separate condenser</span><span class="year">1769</span></div>
+          <div class="item"><span class="label">separate condenser</span><span class="year">1769</span></div>
           <div class="item"><span class="label">locomotive · Rocket</span><span class="year">1829</span></div>
           <div class="item"><span class="label">steam turbine</span><span class="year">1884</span></div>
         </div>
       </div>
 
-      <!-- abstract / short description – like a scientific note -->
-      <div class="abstract">
-        <strong>▸</strong> A <strong>steam engine</strong> converts thermal energy (from boiling water) 
-        into mechanical work. The <strong>reciprocating</strong> piston or <strong>turbine</strong> 
-        drives wheels, pumps, or generators. <span style="color: #3e5b6f;">—</span> 
+      <!-- personal note — like the article's reflective style -->
+      <div class="note">
+        <strong>▸</strong> A steam engine converts <span class="highlight">thermal energy</span> (from boiling water) 
+        into mechanical work. The piston or turbine drives wheels, pumps, or generators. 
+        <span style="color: #3e5b6f;">—</span> 
         <span style="font-weight: 450;">key driver of the Industrial Revolution.</span>
+        <br />
+        <span style="font-size: 0.75rem; color: #4f6578; display: inline-block; margin-top: 0.2rem;">
+          ⚙️ The locomotive made time zones necessary; the clock made the train possible.
+        </span>
       </div>
 
-      <!-- additional compact row: applications + notable -->
-      <div class="row" style="margin-top: 0.2rem;">
+      <!-- additional row: applications + notable -->
+      <div class="row" style="margin-top: 0.1rem;">
         <div class="col">
           <div class="section-title">⏤ applications</div>
-          <div class="item"><span class="label">railways</span><span class="value">· steam locomotives</span></div>
+          <div class="item"><span class="label">railways</span><span class="value">· locomotives</span></div>
           <div class="item"><span class="label">marine</span><span class="value">· steamships</span></div>
           <div class="item"><span class="label">stationary</span><span class="value">· mills · pumps</span></div>
         </div>
@@ -244,10 +248,10 @@
         </div>
       </div>
 
-      <!-- footer: like a reference / DOI -->
-      <div class="meta-footer">
+      <!-- footer: like a reference / postscript -->
+      <div class="footer">
         <span class="tag">📄 · steam · thermal · mechanical</span>
-        <span style="letter-spacing: 0.04em;">doi: 10.1769/steam.2026</span>
+        <span style="letter-spacing: 0.04em;">noted from my desk</span>
       </div>
 
     </div>
